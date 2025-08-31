@@ -91,7 +91,7 @@ elseif homeprod == 1
     figure('Name','IRFs to a TFP Shock (incl Home Production)')
 end
 % Set up tiled layout depending on number of variables
-tiledlayout(ceil(length(var_select)./4), 4);
+tiledlayout(3, 3);
 % Loop IRF figures over all selected variables
 for ii = 1:length(var_select)
         % Create next tile in the loop
@@ -101,8 +101,8 @@ for ii = 1:length(var_select)
         yline(0,'c');
         eval(['area(irf_CAP_eA.' char(var_select(ii)) '(:,1),"LineStyle","none","FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
         eval(['area(irf_CAP_eA.' char(var_select(ii)) '(:,2),"LineStyle","none","FaceColor",[0.7 0.3 0.3],"FaceAlpha",0.33)']);%o
-        eval(['plot(irf_CAP_eA.' char(var_select(ii)) '(:,3),"r","LineWidth",1)']);%*
-        eval(['plot(irf_CAP_eA.' char(var_select(ii)) '(:,4),"b","LineWidth",1)']);%v%,"LineStyle","none"
+        eval(['plot(irf_CAP_eA.' char(var_select(ii)) '(:,3),"x-","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);%*
+        eval(['plot(irf_CAP_eA.' char(var_select(ii)) '(:,4),"v-","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);%v%,"LineStyle","none"
         hold off;
         axis tight;
         % Show variable name as ylabel in first column
@@ -113,7 +113,7 @@ end
 % Print legend with the gamma values for the different models
 leg = legend("", "Benchmark","Benchmark + Capital", "Simple SaM Model", ...
                 "Simple SaM Model + Capital", 'Location', 'southoutside', ...
-                'orientation', 'horizontal', 'NumColumns', 2);
+                'orientation', 'horizontal', 'NumColumns', 4);
 leg.Layout.Tile = 'South';
 % Save figure
 set(gcf, 'Units', 'centimeters');
@@ -123,7 +123,7 @@ set(gcf, 'PaperSize', [width height]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 width height]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/irf_robust_capital_tfp.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_irf_robust_capital_tfp.png', 'Resolution',600)
 
 % -------------------------------------------------------------------------
 % IRFs Output Gap and Inflation - Monetary Policy (PRESENTATION!)
@@ -134,7 +134,7 @@ elseif homeprod == 1
     figure('Name','IRFs to a Monetary Policy Shock (incl Home Production)')
 end
 % Set up tiled layout depending on number of variables
-tiledlayout(ceil(length(var_select)./4), 4);
+tiledlayout(3, 3);
 % Loop IRF figures over all selected variables
 for ii = 1:length(var_select)
         % Create next tile in the loop
@@ -142,10 +142,10 @@ for ii = 1:length(var_select)
         % Plot all four different model IRFs in one graph
         hold on;
         yline(0,'c');
-        eval(['area(irf_CAP_eM.' char(var_select(ii)) '(:,1),"FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
+        eval(['area(irf_CAP_eM.' char(var_select(ii)) '(:,1),"LineStyle","none","FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
         eval(['area(irf_CAP_eM.' char(var_select(ii)) '(:,2),"LineStyle","none","FaceColor",[0.7 0.3 0.3],"FaceAlpha",0.33)']);%o
-        eval(['plot(irf_CAP_eM.' char(var_select(ii)) '(:,3),"r","LineWidth",1)']);%*
-        eval(['plot(irf_CAP_eM.' char(var_select(ii)) '(:,4),"b","LineWidth",1)']);%,"LineStyle","none"
+        eval(['plot(irf_CAP_eM.' char(var_select(ii)) '(:,3),"x-","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);%*
+        eval(['plot(irf_CAP_eM.' char(var_select(ii)) '(:,4),"v-","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);%,"LineStyle","none"
         hold off;
         axis tight;
         % Show variable name as ylabel in first column
@@ -156,7 +156,7 @@ end
 % Print legend with the gamma values for the different models
 leg = legend("", "Benchmark","Benchmark + Capital", "Simple SaM Model", ...
                 "Simple SaM Model + Capital", 'Location', 'southoutside', ...
-                'orientation', 'horizontal', 'NumColumns', 2);
+                'orientation', 'horizontal', 'NumColumns', 4);
 leg.Layout.Tile = 'South';
 % Save figure
 set(gcf, 'Units', 'centimeters');
@@ -166,7 +166,7 @@ set(gcf, 'PaperSize', [width height]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 width height]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/irf_robust_capital_policy.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_irf_robust_capital_policy.png', 'Resolution',600)
 
 % -------------------------------------------------------------------------
 % IRFs Output Gap and Inflation - SEARCH EFFORT
@@ -177,7 +177,7 @@ elseif homeprod == 1
     figure('Name','IRFs to a Search Effort Shock (incl Home Production)')
 end
 % Set up tiled layout depending on number of variables
-tiledlayout(ceil(length(var_select)./4), 4);
+tiledlayout(3, 3);
 % Loop IRF figures over all selected variables
 for ii = 1:length(var_select)
         % Create next tile in the loop
@@ -185,10 +185,10 @@ for ii = 1:length(var_select)
         % Plot all four different model IRFs in one graph
         hold on;
         yline(0,'c');
-        eval(['area(irf_CAP_eD.' char(var_select(ii)) '(:,1),"FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
+        eval(['area(irf_CAP_eD.' char(var_select(ii)) '(:,1),"LineStyle","none","FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
         eval(['area(irf_CAP_eD.' char(var_select(ii)) '(:,2),"LineStyle","none","FaceColor",[0.7 0.3 0.3],"FaceAlpha",0.33)']);%o
-        eval(['plot(irf_CAP_eD.' char(var_select(ii)) '(:,3),"r","LineWidth",1)']);%*
-        eval(['plot(irf_CAP_eD.' char(var_select(ii)) '(:,4),"b","LineWidth",1)']);%,"LineStyle","none"
+        eval(['plot(irf_CAP_eD.' char(var_select(ii)) '(:,3),"x-","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);%*
+        eval(['plot(irf_CAP_eD.' char(var_select(ii)) '(:,4),"v-","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);%,"LineStyle","none"
         hold off;
         axis tight;
         % Show variable name as ylabel in first column
@@ -199,7 +199,7 @@ end
 % Print legend with the gamma values for the different models
 leg = legend("", "Benchmark","Benchmark + Capital", "Simple SaM Model", ...
                 "Simple SaM Model + Capital", 'Location', 'southoutside', ...
-                'orientation', 'horizontal', 'NumColumns', 2);
+                'orientation', 'horizontal', 'NumColumns', 4);
 leg.Layout.Tile = 'South';
 % Save figure
 set(gcf, 'Units', 'centimeters');
@@ -209,7 +209,7 @@ set(gcf, 'PaperSize', [width height]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 width height]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/irf_robust_capital_search.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_irf_robust_capital_search.png', 'Resolution',600)
 
 % -------------------------------------------------------------------------
 % IRFs Output Gap and Inflation - Matching Efficiency
@@ -220,7 +220,7 @@ elseif homeprod == 1
     figure('Name','IRFs to a Matching Efficiency Shock (incl Home Production)')
 end
 % Set up tiled layout depending on number of variables
-tiledlayout(ceil(length(var_select)./4), 4);
+tiledlayout(3, 3);
 % Loop IRF figures over all selected variables
 for ii = 1:length(var_select)
         % Create next tile in the loop
@@ -228,10 +228,10 @@ for ii = 1:length(var_select)
         % Plot all four different model IRFs in one graph
         hold on;
         yline(0,'c');
-        eval(['area(irf_CAP_eT.' char(var_select(ii)) '(:,1),"FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
+        eval(['area(irf_CAP_eT.' char(var_select(ii)) '(:,1),"LineStyle","none","FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
         eval(['area(irf_CAP_eT.' char(var_select(ii)) '(:,2),"LineStyle","none","FaceColor",[0.7 0.3 0.3],"FaceAlpha",0.33)']);%o
-        eval(['plot(irf_CAP_eT.' char(var_select(ii)) '(:,3),"r","LineWidth",1)']);%*
-        eval(['plot(irf_CAP_eT.' char(var_select(ii)) '(:,4),"b","LineWidth",1)']);%,"LineStyle","none"
+        eval(['plot(irf_CAP_eT.' char(var_select(ii)) '(:,3),"x-","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);%*
+        eval(['plot(irf_CAP_eT.' char(var_select(ii)) '(:,4),"v-","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);%,"LineStyle","none"
         hold off;
         axis tight;
         % Show variable name as ylabel in first column
@@ -242,7 +242,7 @@ end
 % Print legend with the gamma values for the different models
 leg = legend("", "Benchmark","Benchmark + Capital", "Simple SaM Model", ...
                 "Simple SaM Model + Capital", 'Location', 'southoutside', ...
-                'orientation', 'horizontal', 'NumColumns', 2);
+                'orientation', 'horizontal', 'NumColumns', 4);
 leg.Layout.Tile = 'South';
 % Save figure
 set(gcf, 'Units', 'centimeters');
@@ -252,7 +252,7 @@ set(gcf, 'PaperSize', [width height]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 width height]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/irf_robust_capital_efficiency.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_irf_robust_capital_efficiency.png', 'Resolution',600)
 
 % -------------------------------------------------------------------------
 % IRFs Output Gap and Inflation - EIS
@@ -263,7 +263,7 @@ elseif homeprod == 1
     figure('Name','IRFs to an EIS Shock (incl Home Production)')
 end
 % Set up tiled layout depending on number of variables
-tiledlayout(ceil(length(var_select)./4), 4);
+tiledlayout(3, 3);
 % Loop IRF figures over all selected variables
 for ii = 1:length(var_select)
         % Create next tile in the loop
@@ -271,10 +271,10 @@ for ii = 1:length(var_select)
         % Plot all four different model IRFs in one graph
         hold on;
         yline(0,'c');
-        eval(['area(irf_CAP_eP.' char(var_select(ii)) '(:,1),"FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
+        eval(['area(irf_CAP_eP.' char(var_select(ii)) '(:,1),"LineStyle","none","FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
         eval(['area(irf_CAP_eP.' char(var_select(ii)) '(:,2),"LineStyle","none","FaceColor",[0.7 0.3 0.3],"FaceAlpha",0.33)']);%o
-        eval(['plot(irf_CAP_eP.' char(var_select(ii)) '(:,3),"r","LineWidth",1)']);%*
-        eval(['plot(irf_CAP_eP.' char(var_select(ii)) '(:,4),"b","LineWidth",1)']);%,"LineStyle","none"
+        eval(['plot(irf_CAP_eP.' char(var_select(ii)) '(:,3),"x-","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);%*
+        eval(['plot(irf_CAP_eP.' char(var_select(ii)) '(:,4),"v-","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);%,"LineStyle","none"
         hold off;
         axis tight;
         % Show variable name as ylabel in first column
@@ -285,7 +285,7 @@ end
 % Print legend with the gamma values for the different models
 leg = legend("", "Benchmark","Benchmark + Capital", "Simple SaM Model", ...
                 "Simple SaM Model + Capital", 'Location', 'southoutside', ...
-                'orientation', 'horizontal', 'NumColumns', 2);
+                'orientation', 'horizontal', 'NumColumns', 4);
 leg.Layout.Tile = 'South';
 % Save figure
 set(gcf, 'Units', 'centimeters');
@@ -295,4 +295,4 @@ set(gcf, 'PaperSize', [width height]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 width height]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/irf_robust_capital_eis.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_irf_robust_capital_eis.png', 'Resolution',600)

@@ -1,3 +1,4 @@
+
 % *************************************************************************
 % Shopping Time and Frictional Goods Markets:
 % Implications for the New-Keynesian Model
@@ -23,11 +24,11 @@ dropnumber          = 2000;%20000;    % Set Number of Simulation Periods dropped
 
 %% Define Output (SELECT ONLY ONE AT A TIME!)
 % Set the size of the figure in centimeters
-width = 21;     % cm
-height = 6.5;   % cm
+width = 21; % cm
+height = 9; % cm
 
 % 0. Default NK Time Allocation Model
-mod_select_0 = 1;
+mod_select_0 = 0;
 % 1. Channel Decomposition (5-eq model)
 mod_select_1 = 0;
 % 2. Simple time model in comparison (5-eq model)
@@ -42,20 +43,22 @@ mod_select_5 = 0;
 mod_select_6 = 0;
 % 7. GHH extensions
 mod_select_7 = 0;
+% 8. Statistics Calculation
+stat_benchmark = 0; % Choose benchmark NK model instead of NK-SaM model
+mod_select_8 = 1;
 
 % Select variables (simulations)
 % ----------------------------------------
-var_sim_select = ["gdp_obs", "gdp_gap", "ue_gap", "cu_gap", "piC", "piW", ...
-                    "cu", "h_obs", "mc_obs", "w_obs", "ls_obs", "ped_obs", ...
-                    "lw_obs", "hs_obs"];
+var_sim_select = ["gdp_obs", "gdp_gap", "ue_gap", "piC", "w_obs", "cu", ...
+                    "mc_obs", "ped_obs", "lw_obs", "hs_obs"];
 
 % Select variables (output/display)
 % ----------------------------------------
 var_select     = ["gdp_obs", "gdp_gap", "ue_gap", "piC", "w_obs", ...
-                    "cu", "ped_obs", "lw_obs"];
+                    "cu", "ped_obs", "lw_obs", "hs_obs"];
 title_select   = ["Real GDP", "Output Gap", "Unemployment Gap", "Inflation", ...
                     "Real Wage", "Capacity Utilization", ...
-                    "Price Elasticity", "Labor Wedge"];
+                    "Price Elasticity", "Labor Wedge", "Search Effort"];
 
 %% ------------------------------------------------------------------------
 % Parameters & Functional Form
@@ -81,7 +84,7 @@ hours_target = 0; % Target shopping hours/market hours ratio instead of supply=d
 % Default Parameters
 % ----------------------------------------
 par.nuM         = 2;
-parSAM.nuS      = par.nuM;
+parSAM.nuS      = 0.5.*par.nuM;
 parHW.nuH       = par.nuM;
 parSAM.gamES    = 0.32;
 parSAM.gamSS    = -0.00001;
@@ -94,7 +97,7 @@ nuSnuM_low  = 0.5;
 nuSnuM_high = 1.5;
 
 gamSS_low   = -9999;
-gamSS_mid   = -1;
+gamSS_mid   = -2.7;
 gamSS_high  = -0.00001;
 
 delT_loop   = 0.25;
@@ -160,4 +163,11 @@ end
 % -------------------------------------------------------------------------
 if mod_select_7 == 1
     simple_ghh_model;
+end
+
+%% ------------------------------------------------------------------------
+% 8. UTILITY FUNCTION IN COMPARISON TO THE SIMPLE MODEL
+% -------------------------------------------------------------------------
+if mod_select_8 == 1
+    default_statistics;
 end

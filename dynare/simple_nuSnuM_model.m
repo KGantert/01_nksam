@@ -95,7 +95,7 @@ elseif homeprod == 1
     figure('Name','IRFs to a TFP Shock (incl Home Production)')
 end
 % Set up tiled layout depending on number of variables
-tiledlayout(ceil(length(var_select)./4), 4);
+tiledlayout(3, 3);
 % Loop IRF figures over all selected variables
 for ii = 1:length(var_select)
         % Create next tile in the loop
@@ -103,12 +103,12 @@ for ii = 1:length(var_select)
         % Plot all four different model IRFs in one graph
         hold on;
         eval(['area(irf_TIME_eA.' char(var_select(ii)) '(:,1),"LineStyle","none","FaceColor",[0.7 0.7 0.7])']);
-        eval(['plot(irf_TIME_eA.' char(var_select(ii)) '(:,2),"r-.","LineWidth",1)']);
-        eval(['plot(irf_TIME_eA.' char(var_select(ii)) '(:,3),"r-","LineWidth",1)']);
-        eval(['plot(irf_TIME_eA.' char(var_select(ii)) '(:,4),"r--","LineWidth",1)']);
-        eval(['plot(irf_TIME_eA.' char(var_select(ii)) '(:,5),"b-.","LineWidth",1)']);
-        eval(['plot(irf_TIME_eA.' char(var_select(ii)) '(:,6),"b-","LineWidth",1)']);
-        eval(['plot(irf_TIME_eA.' char(var_select(ii)) '(:,7),"b--","LineWidth",1)']);
+        eval(['plot(irf_TIME_eA.' char(var_select(ii)) '(:,2),"-.","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);
+        eval(['plot(irf_TIME_eA.' char(var_select(ii)) '(:,3),"-","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);
+        eval(['plot(irf_TIME_eA.' char(var_select(ii)) '(:,4),"--","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);
+        eval(['plot(irf_TIME_eA.' char(var_select(ii)) '(:,5),"-.","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);
+        eval(['plot(irf_TIME_eA.' char(var_select(ii)) '(:,6),"-","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);
+        eval(['plot(irf_TIME_eA.' char(var_select(ii)) '(:,7),"--","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);
         yline(0,'g');
         hold off;
         axis tight;
@@ -134,7 +134,7 @@ set(gcf, 'PaperSize', [width height]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 width height]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/irf_robust_nuSnuM_tfp.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_irf_robust_nuSnuM_tfp.png', 'Resolution',600)
 
 %% ---------------------------------------------------------------------
 % CREATE IRF FIGURE FOR MONETARY POLICY SHOCK
@@ -144,7 +144,7 @@ elseif homeprod == 1
     figure('Name','IRFs to a Monetary Policy Shock (incl Home Production)')
 end
 % Set up tiled layout depending on number of variables
-tiledlayout(ceil(length(var_select)./4), 4);
+tiledlayout(3, 3);
 % Loop IRF figures over all selected variables
 for ii = 1:length(var_select)
         % Create next tile in the loop
@@ -152,12 +152,12 @@ for ii = 1:length(var_select)
         % Plot all four different model IRFs in one graph
         hold on;
         eval(['area(irf_TIME_eM.' char(var_select(ii)) '(:,1),"LineStyle","none","FaceColor",[0.7 0.7 0.7])']);
-        eval(['plot(irf_TIME_eM.' char(var_select(ii)) '(:,2),"r-.","LineWidth",1)']);
-        eval(['plot(irf_TIME_eM.' char(var_select(ii)) '(:,3),"r-","LineWidth",1)']);
-        eval(['plot(irf_TIME_eM.' char(var_select(ii)) '(:,4),"r--","LineWidth",1)']);
-        eval(['plot(irf_TIME_eM.' char(var_select(ii)) '(:,5),"b-.","LineWidth",1)']);
-        eval(['plot(irf_TIME_eM.' char(var_select(ii)) '(:,6),"b-","LineWidth",1)']);
-        eval(['plot(irf_TIME_eM.' char(var_select(ii)) '(:,7),"b--","LineWidth",1)']);
+        eval(['plot(irf_TIME_eM.' char(var_select(ii)) '(:,2),"-.","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);
+        eval(['plot(irf_TIME_eM.' char(var_select(ii)) '(:,3),"-","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);
+        eval(['plot(irf_TIME_eM.' char(var_select(ii)) '(:,4),"--","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);
+        eval(['plot(irf_TIME_eM.' char(var_select(ii)) '(:,5),"-.","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);
+        eval(['plot(irf_TIME_eM.' char(var_select(ii)) '(:,6),"-","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);
+        eval(['plot(irf_TIME_eM.' char(var_select(ii)) '(:,7),"--","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);
         yline(0,'g');
         hold off;
         axis tight;
@@ -183,7 +183,7 @@ set(gcf, 'PaperSize', [width height]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 width height]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/irf_robust_nuSnuM_policy.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_irf_robust_nuSnuM_policy.png', 'Resolution',600)
 
 %% ---------------------------------------------------------------------
 % CREATE IRF FIGURE FOR SEARCH EFFORT SHOCK
@@ -193,7 +193,7 @@ elseif homeprod == 1
     figure('Name','IRFs to a Search Effort Shock (incl Home Production)')
 end
 % Set up tiled layout depending on number of variables
-tiledlayout(ceil(length(var_select)./4), 4);
+tiledlayout(3, 3);
 % Loop IRF figures over all selected variables
 for ii = 1:length(var_select)
         % Create next tile in the loop
@@ -201,12 +201,12 @@ for ii = 1:length(var_select)
         % Plot all four different model IRFs in one graph
         hold on;
         eval(['area(irf_TIME_eD.' char(var_select(ii)) '(:,1),"LineStyle","none","FaceColor",[0.7 0.7 0.7])']);
-        eval(['plot(irf_TIME_eD.' char(var_select(ii)) '(:,2),"r-.","LineWidth",1)']);
-        eval(['plot(irf_TIME_eD.' char(var_select(ii)) '(:,3),"r-","LineWidth",1)']);
-        eval(['plot(irf_TIME_eD.' char(var_select(ii)) '(:,4),"r--","LineWidth",1)']);
-        eval(['plot(irf_TIME_eD.' char(var_select(ii)) '(:,5),"b-.","LineWidth",1)']);
-        eval(['plot(irf_TIME_eD.' char(var_select(ii)) '(:,6),"b-","LineWidth",1)']);
-        eval(['plot(irf_TIME_eD.' char(var_select(ii)) '(:,7),"b--","LineWidth",1)']);
+        eval(['plot(irf_TIME_eD.' char(var_select(ii)) '(:,2),"-.","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);
+        eval(['plot(irf_TIME_eD.' char(var_select(ii)) '(:,3),"-","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);
+        eval(['plot(irf_TIME_eD.' char(var_select(ii)) '(:,4),"--","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);
+        eval(['plot(irf_TIME_eD.' char(var_select(ii)) '(:,5),"-.","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);
+        eval(['plot(irf_TIME_eD.' char(var_select(ii)) '(:,6),"-","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);
+        eval(['plot(irf_TIME_eD.' char(var_select(ii)) '(:,7),"--","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);
         yline(0,'g');
         hold off;
         axis tight;
@@ -232,7 +232,7 @@ set(gcf, 'PaperSize', [width height]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 width height]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/irf_robust_nuSnuM_search.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_irf_robust_nuSnuM_search.png', 'Resolution',600)
 
 %% ---------------------------------------------------------------------
 % CREATE IRF FIGURE FOR MATCHING EFFICIENCY SHOCK
@@ -242,7 +242,7 @@ elseif homeprod == 1
     figure('Name','IRFs to a Matching Efficiency Shock (incl Home Production)')
 end
 % Set up tiled layout depending on number of variables
-tiledlayout(ceil(length(var_select)./4), 4);
+tiledlayout(3, 3);
 % Loop IRF figures over all selected variables
 for ii = 1:length(var_select)
         % Create next tile in the loop
@@ -250,12 +250,12 @@ for ii = 1:length(var_select)
         % Plot all four different model IRFs in one graph
         hold on;
         eval(['area(irf_TIME_eT.' char(var_select(ii)) '(:,1),"LineStyle","none","FaceColor",[0.7 0.7 0.7])']);
-        eval(['plot(irf_TIME_eT.' char(var_select(ii)) '(:,2),"r-.","LineWidth",1)']);
-        eval(['plot(irf_TIME_eT.' char(var_select(ii)) '(:,3),"r-","LineWidth",1)']);
-        eval(['plot(irf_TIME_eT.' char(var_select(ii)) '(:,4),"r--","LineWidth",1)']);
-        eval(['plot(irf_TIME_eT.' char(var_select(ii)) '(:,5),"b-.","LineWidth",1)']);
-        eval(['plot(irf_TIME_eT.' char(var_select(ii)) '(:,6),"b-","LineWidth",1)']);
-        eval(['plot(irf_TIME_eT.' char(var_select(ii)) '(:,7),"b--","LineWidth",1)']);
+        eval(['plot(irf_TIME_eT.' char(var_select(ii)) '(:,2),"-.","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);
+        eval(['plot(irf_TIME_eT.' char(var_select(ii)) '(:,3),"-","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);
+        eval(['plot(irf_TIME_eT.' char(var_select(ii)) '(:,4),"--","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);
+        eval(['plot(irf_TIME_eT.' char(var_select(ii)) '(:,5),"-.","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);
+        eval(['plot(irf_TIME_eT.' char(var_select(ii)) '(:,6),"-","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);
+        eval(['plot(irf_TIME_eT.' char(var_select(ii)) '(:,7),"--","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);
         yline(0,'g');
         hold off;
         axis tight;
@@ -281,7 +281,7 @@ set(gcf, 'PaperSize', [width height]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 width height]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/irf_robust_nuSnuM_efficiency.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_irf_robust_nuSnuM_efficiency.png', 'Resolution',600)
 
 %% ---------------------------------------------------------------------
 % CREATE IRF FIGURE FOR EIS SHOCK
@@ -291,7 +291,7 @@ elseif homeprod == 1
     figure('Name','IRFs to an EIS Shock (incl Home Production)')
 end
 % Set up tiled layout depending on number of variables
-tiledlayout(ceil(length(var_select)./4), 4);
+tiledlayout(3, 3);
 % Loop IRF figures over all selected variables
 for ii = 1:length(var_select)
         % Create next tile in the loop
@@ -299,12 +299,12 @@ for ii = 1:length(var_select)
         % Plot all four different model IRFs in one graph
         hold on;
         eval(['area(irf_TIME_eP.' char(var_select(ii)) '(:,1),"LineStyle","none","FaceColor",[0.7 0.7 0.7])']);
-        eval(['plot(irf_TIME_eP.' char(var_select(ii)) '(:,2),"r-.","LineWidth",1)']);
-        eval(['plot(irf_TIME_eP.' char(var_select(ii)) '(:,3),"r-","LineWidth",1)']);
-        eval(['plot(irf_TIME_eP.' char(var_select(ii)) '(:,4),"r--","LineWidth",1)']);
-        eval(['plot(irf_TIME_eP.' char(var_select(ii)) '(:,5),"b-.","LineWidth",1)']);
-        eval(['plot(irf_TIME_eP.' char(var_select(ii)) '(:,6),"b-","LineWidth",1)']);
-        eval(['plot(irf_TIME_eP.' char(var_select(ii)) '(:,7),"b--","LineWidth",1)']);
+        eval(['plot(irf_TIME_eP.' char(var_select(ii)) '(:,2),"-.","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);
+        eval(['plot(irf_TIME_eP.' char(var_select(ii)) '(:,3),"-","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);
+        eval(['plot(irf_TIME_eP.' char(var_select(ii)) '(:,4),"--","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);
+        eval(['plot(irf_TIME_eP.' char(var_select(ii)) '(:,5),"-.","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);
+        eval(['plot(irf_TIME_eP.' char(var_select(ii)) '(:,6),"-","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);
+        eval(['plot(irf_TIME_eP.' char(var_select(ii)) '(:,7),"--","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);
         yline(0,'g');
         hold off;
         axis tight;
@@ -330,4 +330,4 @@ set(gcf, 'PaperSize', [width height]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 width height]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/irf_robust_nuSnuM_eis.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_irf_robust_nuSnuM_eis.png', 'Resolution',600)

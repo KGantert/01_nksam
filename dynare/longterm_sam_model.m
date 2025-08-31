@@ -92,7 +92,7 @@ elseif homeprod == 1
     figure('Name','IRFs to a TFP Shock (incl Home Production)')
 end
 % Set up tiled layout depending on number of variables
-tiledlayout(ceil(length(var_select)./4), 4);
+tiledlayout(3, 3);
 % Loop IRF figures over all selected variables
 for ii = 1:length(var_select)
         % Create next tile in the loop
@@ -102,9 +102,9 @@ for ii = 1:length(var_select)
         yline(0,'c');
         eval(['area(irf_LTS_eA.' char(var_select(ii)) '(:,1),"LineStyle","none","FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.15)']);
         eval(['area(irf_LTS_eA.' char(var_select(ii)) '(:,2),"LineStyle","none","FaceColor",[0.7 0.3 0.3],"FaceAlpha",0.15)']);%o
-        eval(['plot(irf_LTS_eA.' char(var_select(ii)) '(:,3),"r","LineWidth",1)']);%*
-        eval(['plot(irf_LTS_eA.' char(var_select(ii)) '(:,4),"b","LineWidth",1)']);%v%,"LineStyle","none"
-        eval(['plot(irf_LTS_eA.' char(var_select(ii)) '(:,5),"c","LineWidth",1)']);
+        eval(['plot(irf_LTS_eA.' char(var_select(ii)) '(:,3),"x-","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);%*
+        eval(['plot(irf_LTS_eA.' char(var_select(ii)) '(:,4),"v-","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);%v%,"LineStyle","none"
+        eval(['plot(irf_LTS_eA.' char(var_select(ii)) '(:,5),"o-","LineWidth",1,"Color",[0.9290, 0.6940, 0.1250])']);
         hold off;
         axis tight;
         % Show variable name as ylabel in first column
@@ -125,7 +125,7 @@ set(gcf, 'PaperSize', [width height]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 width height]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/irf_robust_longterm_tfp.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_irf_robust_longterm_tfp.png', 'Resolution',600)
 
 % -------------------------------------------------------------------------
 % IRFs Output Gap and Inflation - Monetary Policy (PRESENTATION!)
@@ -136,7 +136,7 @@ elseif homeprod == 1
     figure('Name','IRFs to a Monetary Policy Shock (incl Home Production)')
 end
 % Set up tiled layout depending on number of variables
-tiledlayout(ceil(length(var_select)./4), 4);
+tiledlayout(3, 3);
 % Loop IRF figures over all selected variables
 for ii = 1:length(var_select)
         % Create next tile in the loop
@@ -144,11 +144,11 @@ for ii = 1:length(var_select)
         % Plot all four different model IRFs in one graph
         hold on;
         yline(0,'c');
-        eval(['area(irf_LTS_eM.' char(var_select(ii)) '(:,1),"FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
+        eval(['area(irf_LTS_eM.' char(var_select(ii)) '(:,1),"LineStyle","none","FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
         eval(['area(irf_LTS_eM.' char(var_select(ii)) '(:,2),"LineStyle","none","FaceColor",[0.7 0.3 0.3],"FaceAlpha",0.33)']);%o
-        eval(['plot(irf_LTS_eM.' char(var_select(ii)) '(:,3),"r","LineWidth",1)']);%*
-        eval(['plot(irf_LTS_eM.' char(var_select(ii)) '(:,4),"b","LineWidth",1)']);%,"LineStyle","none"
-        eval(['plot(irf_LTS_eM.' char(var_select(ii)) '(:,5),"c","LineWidth",1)']);
+        eval(['plot(irf_LTS_eM.' char(var_select(ii)) '(:,3),"x-","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);%*
+        eval(['plot(irf_LTS_eM.' char(var_select(ii)) '(:,4),"v-","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);%,"LineStyle","none"
+        eval(['plot(irf_LTS_eM.' char(var_select(ii)) '(:,5),"o-","LineWidth",1,"Color",[0.9290, 0.6940, 0.1250])']);
         hold off;
         axis tight;
         % Show variable name as ylabel in first column
@@ -169,7 +169,7 @@ set(gcf, 'PaperSize', [width height]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 width height]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/irf_robust_longterm_policy.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_irf_robust_longterm_policy.png', 'Resolution',600)
 
 % -------------------------------------------------------------------------
 % IRFs Output Gap and Inflation - SEARCH EFFORT (PRESENTATION!)
@@ -180,7 +180,7 @@ elseif homeprod == 1
     figure('Name','IRFs to a Search Effort Shock (incl Home Production)')
 end
 % Set up tiled layout depending on number of variables
-tiledlayout(ceil(length(var_select)./4), 4);
+tiledlayout(3, 3);
 % Loop IRF figures over all selected variables
 for ii = 1:length(var_select)
         % Create next tile in the loop
@@ -188,11 +188,11 @@ for ii = 1:length(var_select)
         % Plot all four different model IRFs in one graph
         hold on;
         yline(0,'c');
-        eval(['area(irf_LTS_eD.' char(var_select(ii)) '(:,1),"FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
+        eval(['area(irf_LTS_eD.' char(var_select(ii)) '(:,1),"LineStyle","none","FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
         eval(['area(irf_LTS_eD.' char(var_select(ii)) '(:,2),"LineStyle","none","FaceColor",[0.7 0.3 0.3],"FaceAlpha",0.33)']);%o
-        eval(['plot(irf_LTS_eD.' char(var_select(ii)) '(:,3),"r","LineWidth",1)']);%*
-        eval(['plot(irf_LTS_eD.' char(var_select(ii)) '(:,4),"b","LineWidth",1)']);%,"LineStyle","none"
-        eval(['plot(irf_LTS_eD.' char(var_select(ii)) '(:,5),"c","LineWidth",1)']);
+        eval(['plot(irf_LTS_eD.' char(var_select(ii)) '(:,3),"x-","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);%*
+        eval(['plot(irf_LTS_eD.' char(var_select(ii)) '(:,4),"v-","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);%,"LineStyle","none"
+        eval(['plot(irf_LTS_eD.' char(var_select(ii)) '(:,5),"o-","LineWidth",1,"Color",[0.9290, 0.6940, 0.1250])']);
         hold off;
         axis tight;
         % Show variable name as ylabel in first column
@@ -213,7 +213,7 @@ set(gcf, 'PaperSize', [width height]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 width height]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/irf_robust_longterm_search.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_irf_robust_longterm_search.png', 'Resolution',600)
 
 % -------------------------------------------------------------------------
 % IRFs Output Gap and Inflation - MATCHING EFFICIENCY (PRESENTATION!)
@@ -224,7 +224,7 @@ elseif homeprod == 1
     figure('Name','IRFs to a Matching Efficiency Shock (incl Home Production)')
 end
 % Set up tiled layout depending on number of variables
-tiledlayout(ceil(length(var_select)./4), 4);
+tiledlayout(3, 3);
 % Loop IRF figures over all selected variables
 for ii = 1:length(var_select)
         % Create next tile in the loop
@@ -232,11 +232,11 @@ for ii = 1:length(var_select)
         % Plot all four different model IRFs in one graph
         hold on;
         yline(0,'c');
-        eval(['area(irf_LTS_eT.' char(var_select(ii)) '(:,1),"FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
+        eval(['area(irf_LTS_eT.' char(var_select(ii)) '(:,1),"LineStyle","none","FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
         eval(['area(irf_LTS_eT.' char(var_select(ii)) '(:,2),"LineStyle","none","FaceColor",[0.7 0.3 0.3],"FaceAlpha",0.33)']);%o
-        eval(['plot(irf_LTS_eT.' char(var_select(ii)) '(:,3),"r","LineWidth",1)']);%*
-        eval(['plot(irf_LTS_eT.' char(var_select(ii)) '(:,4),"b","LineWidth",1)']);%,"LineStyle","none"
-        eval(['plot(irf_LTS_eT.' char(var_select(ii)) '(:,5),"c","LineWidth",1)']);
+        eval(['plot(irf_LTS_eT.' char(var_select(ii)) '(:,3),"x-","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);%*
+        eval(['plot(irf_LTS_eT.' char(var_select(ii)) '(:,4),"v-","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);%,"LineStyle","none"
+        eval(['plot(irf_LTS_eT.' char(var_select(ii)) '(:,5),"o-","LineWidth",1,"Color",[0.9290, 0.6940, 0.1250])']);
         hold off;
         axis tight;
         % Show variable name as ylabel in first column
@@ -257,7 +257,7 @@ set(gcf, 'PaperSize', [width height]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 width height]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/irf_robust_longterm_efficiency.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_irf_robust_longterm_efficiency.png', 'Resolution',600)
 
 % -------------------------------------------------------------------------
 % IRFs Output Gap and Inflation - EIS
@@ -268,7 +268,7 @@ elseif homeprod == 1
     figure('Name','IRFs to an EIS Shock (incl Home Production)')
 end
 % Set up tiled layout depending on number of variables
-tiledlayout(ceil(length(var_select)./4), 4);
+tiledlayout(3, 3);
 % Loop IRF figures over all selected variables
 for ii = 1:length(var_select)
         % Create next tile in the loop
@@ -276,11 +276,11 @@ for ii = 1:length(var_select)
         % Plot all four different model IRFs in one graph
         hold on;
         yline(0,'c');
-        eval(['area(irf_LTS_eP.' char(var_select(ii)) '(:,1),"FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
+        eval(['area(irf_LTS_eP.' char(var_select(ii)) '(:,1),"LineStyle","none","FaceColor",[0.3 0.3 0.3],"FaceAlpha",0.33)']);
         eval(['area(irf_LTS_eP.' char(var_select(ii)) '(:,2),"LineStyle","none","FaceColor",[0.7 0.3 0.3],"FaceAlpha",0.33)']);%o
-        eval(['plot(irf_LTS_eP.' char(var_select(ii)) '(:,3),"r","LineWidth",1)']);%*
-        eval(['plot(irf_LTS_eP.' char(var_select(ii)) '(:,4),"b","LineWidth",1)']);%,"LineStyle","none"
-        eval(['plot(irf_LTS_eP.' char(var_select(ii)) '(:,5),"c","LineWidth",1)']);
+        eval(['plot(irf_LTS_eP.' char(var_select(ii)) '(:,3),"x-","LineWidth",1,"Color",[0, 0.4470, 0.7410])']);%*
+        eval(['plot(irf_LTS_eP.' char(var_select(ii)) '(:,4),"v-","LineWidth",1,"Color",[0.8500, 0.3250, 0.0980])']);%,"LineStyle","none"
+        eval(['plot(irf_LTS_eP.' char(var_select(ii)) '(:,5),"o-","LineWidth",1,"Color",[0.9290, 0.6940, 0.1250])']);
         hold off;
         axis tight;
         % Show variable name as ylabel in first column
@@ -301,4 +301,4 @@ set(gcf, 'PaperSize', [width height]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 width height]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/irf_robust_longterm_eis.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_irf_robust_longterm_eis.png', 'Resolution',600)
