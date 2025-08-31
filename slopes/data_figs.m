@@ -47,7 +47,6 @@ plot(observation_date(85:end),caput_alt(85:end),'g-','LineWidth',1)
 yline(0)
 plot(observation_date(85:end),cu_gap_1(85:end),'Color',[0.8500 0.3250 0.0980],'LineWidth',1)
 plot(observation_date(85:end),cu_gap_2(85:end),'Color',[0.9290 0.6940 0.1250],'LineWidth',1)
-plot(observation_date(85:end),cu_gap_3(85:end),'Color',[0.2290 0.6940 0.1250],'LineWidth',1)
 hold off
 axis tight
 xlabel('Time')
@@ -63,7 +62,6 @@ plot(observation_date(85:end),lw_cpu(85:end)','g-','LineWidth',1)
 plot(observation_date(85:end),lw_gap_nk(85:end),'k-.','LineWidth',1)
 plot(observation_date(85:end),lw_gap_1(85:end),'Color',[0.8500 0.3250 0.0980],'LineWidth',1)
 plot(observation_date(85:end),lw_gap_2(85:end),'Color',[0.9290 0.6940 0.1250],'LineWidth',1)
-plot(observation_date(85:end),lw_gap_3(85:end),'Color',[0.4290 0.4940 0.1250],'LineWidth',1)
 hold off
 axis tight
 xlabel('Time')
@@ -72,7 +70,7 @@ title('Labor Wedge Gap')
 % Legend
 % -------------------------------------------------------------------------
 legend('Output Gap','Unemployment Gap','Data','NK Model','SaM Model \Gamma=0', ...
-        'SaM Model \Gamma=-5','SaM Model \Gamma=-20',...
+        'SaM Model \Gamma=-2.7',...
         'Location','southoutside','Orientation','horizontal','NumColumns',4)
 % Save figure
 % -------------------------------------------------------------------------
@@ -100,31 +98,15 @@ area(observation_date(85:end),ue_gap(85:end),'FaceColor',[0 0.4470 0.7410],'Line
 yline(0)
 plot(observation_date(85:end),pe_gap_1(85:end),'Color',[0.8500 0.3250 0.0980],'LineWidth',1)
 plot(observation_date(85:end),pe_gap_2(85:end),'Color',[0.9290 0.6940 0.1250],'LineWidth',1)
-plot(observation_date(85:end),pe_gap_3(85:end),'Color',[0.2290 0.6940 0.1250],'LineWidth',1)
 hold off
 axis tight
 xlabel('Time')
 ylabel('%-Deviations')
 title('Price Elasticity of Demand Gap')
-% Inflation in US Data
-% -------------------------------------------------------------------------
-nexttile;
-hold on
-area(observation_date(85:end),gdp_gap(85:end),'FaceColor',[0.3010 0.7450 0.9330],'LineStyle','none')
-area(observation_date(85:end),ue_gap(85:end),'FaceColor',[0 0.4470 0.7410],'LineStyle','none')
-plot(observation_date(85:end),infl_yoy(85:end)','g-','LineWidth',1)
-plot(observation_date(85:end),peg_yoy_1(85:end),'Color',[0.8500 0.3250 0.0980],'LineWidth',1)
-plot(observation_date(85:end),peg_yoy_2(85:end),'Color',[0.9290 0.6940 0.1250],'LineWidth',1)
-plot(observation_date(85:end),peg_yoy_3(85:end),'Color',[0.4290 0.4940 0.1250],'LineWidth',1)
-hold off
-axis tight
-xlabel('Time')
-ylabel('%-Deviations')
-title('Search Price Growth')
 % Legend
 % -------------------------------------------------------------------------
 legend('Output Gap','Unemployment Gap','Price Inflation Data','SaM Model \Gamma=0', ...
-        'SaM Model \Gamma=-5','SaM Model \Gamma=-20',...
+        'SaM Model \Gamma=-2.7',...
     'Location','southoutside','Orientation','horizontal','NumColumns',3)
 % Save figure
 % -------------------------------------------------------------------------

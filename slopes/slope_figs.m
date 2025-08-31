@@ -21,10 +21,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(CU_ag_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(CU_ag_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(CU_ag_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(0,'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(CU_ag_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(CU_ag_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(CU_ag_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(0,'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(CU_ag_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(CU_ag_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(CU_ag_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -36,10 +36,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(PE_ag_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(PE_ag_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(PE_ag_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(0,'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(PE_ag_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(PE_ag_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(PE_ag_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(0,'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(PE_ag_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(PE_ag_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(PE_ag_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -51,10 +51,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(LW_ag_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(LW_ag_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(LW_ag_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(squeeze(mean(LW_ag_nk_nuSnuM,"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(LW_ag_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(LW_ag_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(LW_ag_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(LW_ag_nk_nuSnuM,"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(LW_ag_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(LW_ag_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(LW_ag_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -73,7 +73,7 @@ set(gcf, 'PaperSize', [21 5]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 21 5]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/slopes_5eq_ps_cu_okun.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_slopes_5eq_ps_cu_okun.png', 'Resolution',600)
 
 %% ------------------------------------------------------------------------
 % Figure: Output Gap Slopes of the Aggregate Model under Okun's Law
@@ -87,10 +87,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(AS_ag_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(AS_ag_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(AS_ag_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(squeeze(mean(AS_ag_nk_nuSnuM,"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(AS_ag_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AS_ag_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AS_ag_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(AS_ag_nk_nuSnuM,"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(AS_ag_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(AS_ag_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(AS_ag_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -102,10 +102,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(AD_ag_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(AD_ag_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(AD_ag_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(squeeze(mean(AD_ag_nk_nuSnuM,"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(AD_ag_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AD_ag_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AD_ag_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(AD_ag_nk_nuSnuM,"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(AD_ag_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(AD_ag_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(AD_ag_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -117,10 +117,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(WG_ag_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(WG_ag_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(WG_ag_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(squeeze(mean(WG_ag_nk_nuSnuM,"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(WG_ag_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(WG_ag_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(WG_ag_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(WG_ag_nk_nuSnuM,"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(WG_ag_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(WG_ag_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(WG_ag_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -139,7 +139,7 @@ set(gcf, 'PaperSize', [21 5]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 21 5]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/slopes_5eq_asad_okun.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_slopes_5eq_asad_okun.png', 'Resolution',600)
 
 %% ------------------------------------------------------------------------
 % Figure: Slopes of goods market SaM channels (5-eq model)
@@ -156,10 +156,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(CU_cm_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(CU_cm_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(CU_cm_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(0,'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(CU_cm_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(CU_cm_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(CU_cm_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(0,'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(CU_cm_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(CU_cm_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(CU_cm_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -171,10 +171,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(CU_ue_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(CU_ue_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(CU_ue_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(0,'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(CU_ue_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(CU_ue_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(CU_ue_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(0,'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(CU_ue_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(CU_ue_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(CU_ue_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -191,10 +191,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(PE_cm_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(PE_cm_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(PE_cm_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(0,'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(PE_cm_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(PE_cm_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(PE_cm_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(0,'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(PE_cm_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(PE_cm_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(PE_cm_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -206,10 +206,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(PE_ue_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(PE_ue_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(PE_ue_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(0,'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(PE_ue_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(PE_ue_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(PE_ue_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(0,'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(PE_ue_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(PE_ue_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(PE_ue_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -226,10 +226,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(LW_cm_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(LW_cm_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(LW_cm_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(squeeze(mean(LW_cm_nk_nuSnuM,"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(LW_cm_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(LW_cm_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(LW_cm_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(LW_cm_nk_nuSnuM,"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(LW_cm_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(LW_cm_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(LW_cm_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -241,10 +241,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(LW_ue_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(LW_ue_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(LW_ue_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(squeeze(mean(LW_ue_nk_nuSnuM,"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(LW_ue_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(LW_ue_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(LW_ue_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(LW_ue_nk_nuSnuM,"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(LW_ue_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(LW_ue_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(LW_ue_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -264,7 +264,8 @@ set(gcf, 'PaperSize', [21 8]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 21 8]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/slopes_5eq_ps_cu.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_slopes_5eq_ps_cu.png', 'Resolution',600)
+
 
 %% ------------------------------------------------------------------------
 % Figure: Slopes of the Euler equation (5-eq model)
@@ -281,10 +282,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(AD_cm_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(AD_cm_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(AD_cm_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(squeeze(mean(AD_cm_nk_nuSnuM,"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(AD_cm_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AD_cm_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AD_cm_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(AD_cm_nk_nuSnuM,"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(AD_cm_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(AD_cm_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(AD_cm_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 ylim([-0.5 max(AD_cm_sam_nuSnuM(1:3,1:2,:),[],"all")]);
@@ -297,10 +298,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(AD_ue_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(AD_ue_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(AD_ue_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(0,'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(AD_ue_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AD_ue_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AD_ue_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(0,'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(AD_ue_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(AD_ue_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(AD_ue_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -317,10 +318,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(AS_cm_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(AS_cm_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(AS_cm_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(squeeze(mean(AS_cm_nk_nuSnuM,"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(AS_cm_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AS_cm_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AS_cm_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(AS_cm_nk_nuSnuM,"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(AS_cm_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(AS_cm_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(AS_cm_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -332,10 +333,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(AS_ue_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(AS_ue_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(AS_ue_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(squeeze(mean(AS_ue_nk_nuSnuM,"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(AS_ue_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AS_ue_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AS_ue_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(AS_ue_nk_nuSnuM,"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(AS_ue_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(AS_ue_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(AS_ue_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -352,10 +353,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(WG_cm_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(WG_cm_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(WG_cm_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(squeeze(mean(WG_cm_nk_nuSnuM,"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(WG_cm_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(WG_cm_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(WG_cm_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(WG_cm_nk_nuSnuM,"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(WG_cm_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(WG_cm_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(WG_cm_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -367,10 +368,10 @@ hold on;
 plot(nuSnuM_mult,squeeze(WG_ue_sam_nuSnuM(1,1,:))','k--','Linewidth',1);
 plot(nuSnuM_mult,squeeze(WG_ue_sam_nuSnuM(2,1,:))','k-.','Linewidth',1);
 plot(nuSnuM_mult,squeeze(WG_ue_sam_nuSnuM(3,1,:))','k-','Linewidth',1);
-yline(squeeze(mean(WG_ue_nk_nuSnuM,"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(WG_ue_sam_nuSnuM(1,2,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(WG_ue_sam_nuSnuM(2,2,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(WG_ue_sam_nuSnuM(3,2,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(WG_ue_nk_nuSnuM,"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(WG_ue_sam_nuSnuM(1,2,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(WG_ue_sam_nuSnuM(2,2,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(WG_ue_sam_nuSnuM(3,2,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -390,7 +391,7 @@ set(gcf, 'PaperSize', [21 8]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 21 8]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/slopes_5eq_asad.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_slopes_5eq_asad.png', 'Resolution',600)
 
 %% ------------------------------------------------------------------------
 % Figure: Output Gap Slopes of the Aggregate Model under Okun's Law:
@@ -403,9 +404,9 @@ tiledlayout(2,3)
 % -------------------------------------------------------------------------
 nexttile;
 hold on;
-plot(nuSnuM_mult,squeeze(CU_ag_sam_hw(1,2,:)./CU_ag_sam_hw(1,1,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(CU_ag_sam_hw(2,2,:)./CU_ag_sam_hw(2,1,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(CU_ag_sam_hw(3,2,:)./CU_ag_sam_hw(3,1,:))','b-','Linewidth',lwdth);
+plot(nuSnuM_mult,squeeze(CU_ag_sam_hw(1,2,:)./CU_ag_sam_hw(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(CU_ag_sam_hw(2,2,:)./CU_ag_sam_hw(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(CU_ag_sam_hw(3,2,:)./CU_ag_sam_hw(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -414,9 +415,9 @@ title('Capacity Utilization');
 % -------------------------------------------------------------------------
 nexttile;
 hold on;
-plot(nuSnuM_mult,squeeze(PE_ag_sam_hw(1,2,:)./PE_ag_sam_hw(1,1,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(PE_ag_sam_hw(2,2,:)./PE_ag_sam_hw(2,1,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(PE_ag_sam_hw(3,2,:)./PE_ag_sam_hw(3,1,:))','b-','Linewidth',lwdth);
+plot(nuSnuM_mult,squeeze(PE_ag_sam_hw(1,2,:)./PE_ag_sam_hw(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(PE_ag_sam_hw(2,2,:)./PE_ag_sam_hw(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(PE_ag_sam_hw(3,2,:)./PE_ag_sam_hw(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -425,10 +426,10 @@ title('Price Elasticity of Demand');
 % -------------------------------------------------------------------------
 nexttile;
 hold on;
-yline(squeeze(mean(LW_ag_nk_hw(:,2,:),"all")./mean(LW_ag_nk_hw(:,1,:),"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(LW_ag_sam_hw(1,2,:)./LW_ag_sam_hw(1,1,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(LW_ag_sam_hw(2,2,:)./LW_ag_sam_hw(2,1,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(LW_ag_sam_hw(3,2,:)./LW_ag_sam_hw(3,1,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(LW_ag_nk_hw(:,2,:),"all")./mean(LW_ag_nk_hw(:,1,:),"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(LW_ag_sam_hw(1,2,:)./LW_ag_sam_hw(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(LW_ag_sam_hw(2,2,:)./LW_ag_sam_hw(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(LW_ag_sam_hw(3,2,:)./LW_ag_sam_hw(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -437,10 +438,10 @@ title('Labor Wedge');
 % -------------------------------------------------------------------------
 nexttile;
 hold on;
-yline(squeeze(mean(AS_ag_nk_hw(:,2,:),"all")./mean(AS_ag_nk_hw(:,1,:),"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(AS_ag_sam_hw(1,2,:)./AS_ag_sam_hw(1,1,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AS_ag_sam_hw(2,2,:)./AS_ag_sam_hw(2,1,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AS_ag_sam_hw(3,2,:)./AS_ag_sam_hw(3,1,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(AS_ag_nk_hw(:,2,:),"all")./mean(AS_ag_nk_hw(:,1,:),"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(AS_ag_sam_hw(1,2,:)./AS_ag_sam_hw(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(AS_ag_sam_hw(2,2,:)./AS_ag_sam_hw(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(AS_ag_sam_hw(3,2,:)./AS_ag_sam_hw(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -449,10 +450,10 @@ title('Phillips Curve');
 % -------------------------------------------------------------------------
 nexttile;
 hold on;
-yline(squeeze(mean(AD_ag_nk_hw(:,2,:),"all")./mean(AD_ag_nk_hw(:,1,:),"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(AD_ag_sam_hw(1,2,:)./AD_ag_sam_hw(1,1,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AD_ag_sam_hw(2,2,:)./AD_ag_sam_hw(2,1,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AD_ag_sam_hw(3,2,:)./AD_ag_sam_hw(3,1,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(AD_ag_nk_hw(:,2,:),"all")./mean(AD_ag_nk_hw(:,1,:),"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(AD_ag_sam_hw(1,2,:)./AD_ag_sam_hw(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(AD_ag_sam_hw(2,2,:)./AD_ag_sam_hw(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(AD_ag_sam_hw(3,2,:)./AD_ag_sam_hw(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -461,10 +462,10 @@ title('Euler Equation');
 % -------------------------------------------------------------------------
 nexttile;
 hold on;
-yline(squeeze(mean(WG_ag_nk_hw(:,2,:),"all")./mean(WG_ag_nk_hw(:,1,:),"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(WG_ag_sam_hw(1,2,:)./WG_ag_sam_hw(1,1,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(WG_ag_sam_hw(2,2,:)./WG_ag_sam_hw(2,1,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(WG_ag_sam_hw(3,2,:)./WG_ag_sam_hw(3,1,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(WG_ag_nk_hw(:,2,:),"all")./mean(WG_ag_nk_hw(:,1,:),"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(WG_ag_sam_hw(1,2,:)./WG_ag_sam_hw(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(WG_ag_sam_hw(2,2,:)./WG_ag_sam_hw(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(WG_ag_sam_hw(3,2,:)./WG_ag_sam_hw(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -483,7 +484,7 @@ set(gcf, 'PaperSize', [21 8]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 21 8]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/slopes_robust_hw.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_slopes_robust_hw.png', 'Resolution',600)
 
 %% ------------------------------------------------------------------------
 % Figure: Output Gap Slopes of the Aggregate Model under Okun's Law:
@@ -496,9 +497,9 @@ tiledlayout(2,3)
 % -------------------------------------------------------------------------
 nexttile;
 hold on;
-plot(nuSnuM_mult,squeeze(CU_ag_sam_ghh(1,2,:)./CU_ag_sam_ghh(1,1,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(CU_ag_sam_ghh(2,2,:)./CU_ag_sam_ghh(2,1,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(CU_ag_sam_ghh(3,2,:)./CU_ag_sam_ghh(3,1,:))','b-','Linewidth',lwdth);
+plot(nuSnuM_mult,squeeze(CU_ag_sam_ghh(1,2,:)./CU_ag_sam_ghh(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(CU_ag_sam_ghh(2,2,:)./CU_ag_sam_ghh(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(CU_ag_sam_ghh(3,2,:)./CU_ag_sam_ghh(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -507,9 +508,9 @@ title('Capacity Utilization');
 % -------------------------------------------------------------------------
 nexttile;
 hold on;
-plot(nuSnuM_mult,squeeze(PE_ag_sam_ghh(1,2,:)./PE_ag_sam_ghh(1,1,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(PE_ag_sam_ghh(2,2,:)./PE_ag_sam_ghh(2,1,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(PE_ag_sam_ghh(3,2,:)./PE_ag_sam_ghh(3,1,:))','b-','Linewidth',lwdth);
+plot(nuSnuM_mult,squeeze(PE_ag_sam_ghh(1,2,:)./PE_ag_sam_ghh(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(PE_ag_sam_ghh(2,2,:)./PE_ag_sam_ghh(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(PE_ag_sam_ghh(3,2,:)./PE_ag_sam_ghh(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -518,10 +519,10 @@ title('Price Elasticity of Demand');
 % -------------------------------------------------------------------------
 nexttile;
 hold on;
-yline(squeeze(mean(LW_ag_nk_ghh(:,2,:),"all")./mean(LW_ag_nk_ghh(:,1,:),"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(LW_ag_sam_ghh(1,2,:)./LW_ag_sam_ghh(1,1,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(LW_ag_sam_ghh(2,2,:)./LW_ag_sam_ghh(2,1,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(LW_ag_sam_ghh(3,2,:)./LW_ag_sam_ghh(3,1,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(LW_ag_nk_ghh(:,2,:),"all")./mean(LW_ag_nk_ghh(:,1,:),"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(LW_ag_sam_ghh(1,2,:)./LW_ag_sam_ghh(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(LW_ag_sam_ghh(2,2,:)./LW_ag_sam_ghh(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(LW_ag_sam_ghh(3,2,:)./LW_ag_sam_ghh(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -530,10 +531,10 @@ title('Labor Wedge');
 % -------------------------------------------------------------------------
 nexttile;
 hold on;
-yline(squeeze(mean(AS_ag_nk_ghh(:,2,:),"all")./mean(AS_ag_nk_ghh(:,1,:),"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(AS_ag_sam_ghh(1,2,:)./AS_ag_sam_ghh(1,1,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AS_ag_sam_ghh(2,2,:)./AS_ag_sam_ghh(2,1,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AS_ag_sam_ghh(3,2,:)./AS_ag_sam_ghh(3,1,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(AS_ag_nk_ghh(:,2,:),"all")./mean(AS_ag_nk_ghh(:,1,:),"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(AS_ag_sam_ghh(1,2,:)./AS_ag_sam_ghh(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(AS_ag_sam_ghh(2,2,:)./AS_ag_sam_ghh(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(AS_ag_sam_ghh(3,2,:)./AS_ag_sam_ghh(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -542,10 +543,10 @@ title('Phillips Curve');
 % -------------------------------------------------------------------------
 nexttile;
 hold on;
-yline(squeeze(mean(AD_ag_nk_ghh(:,2,:),"all")./mean(AD_ag_nk_ghh(:,1,:),"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(AD_ag_sam_ghh(1,2,:)./AD_ag_sam_ghh(1,1,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AD_ag_sam_ghh(2,2,:)./AD_ag_sam_ghh(2,1,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(AD_ag_sam_ghh(3,2,:)./AD_ag_sam_ghh(3,1,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(AD_ag_nk_ghh(:,2,:),"all")./mean(AD_ag_nk_ghh(:,1,:),"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(AD_ag_sam_ghh(1,2,:)./AD_ag_sam_ghh(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(AD_ag_sam_ghh(2,2,:)./AD_ag_sam_ghh(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(AD_ag_sam_ghh(3,2,:)./AD_ag_sam_ghh(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -554,10 +555,10 @@ title('Euler Equation');
 % -------------------------------------------------------------------------
 nexttile;
 hold on;
-yline(squeeze(mean(WG_ag_nk_ghh(:,2,:),"all")./mean(WG_ag_nk_ghh(:,1,:),"all")),'m','LineWidth',lwdth);
-plot(nuSnuM_mult,squeeze(WG_ag_sam_ghh(1,2,:)./WG_ag_sam_ghh(1,1,:))','r--','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(WG_ag_sam_ghh(2,2,:)./WG_ag_sam_ghh(2,1,:))','g-.','Linewidth',lwdth);
-plot(nuSnuM_mult,squeeze(WG_ag_sam_ghh(3,2,:)./WG_ag_sam_ghh(3,1,:))','b-','Linewidth',lwdth);
+yline(squeeze(mean(WG_ag_nk_ghh(:,2,:),"all")./mean(WG_ag_nk_ghh(:,1,:),"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(WG_ag_sam_ghh(1,2,:)./WG_ag_sam_ghh(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(WG_ag_sam_ghh(2,2,:)./WG_ag_sam_ghh(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(WG_ag_sam_ghh(3,2,:)./WG_ag_sam_ghh(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
 hold off;
 axis tight;
 xlabel('$\nu_{SM}$','Interpreter','latex');
@@ -576,4 +577,97 @@ set(gcf, 'PaperSize', [21 8]);
 set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperPosition', [0 0 21 8]);
 fontsize(gcf, 7,"points")
-print(gcf, 'figures/slopes_robust_ghh.png', '-dpng', '-vector');
+exportgraphics(gcf, 'figures/fig_slopes_robust_ghh.png', 'Resolution',600)
+
+%% ------------------------------------------------------------------------
+% Figure: Output Gap Slopes of the Aggregate Model under Okun's Law:
+% STICKY WAGES EXPERIMENT
+% -------------------------------------------------------------------------
+figure('Name', "Sticky Wages: Output Gap Slopes of the Aggregate Model under Okun's Law");
+tiledlayout(2,3)
+% Capacity Utilization Gap
+% -------------------------------------------------------------------------
+nexttile;
+hold on;
+plot(nuSnuM_mult,squeeze(CU_ag_sam_sw(1,2,:)./CU_ag_sam_sw(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(CU_ag_sam_sw(2,2,:)./CU_ag_sam_sw(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(CU_ag_sam_sw(3,2,:)./CU_ag_sam_sw(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
+hold off;
+axis tight;
+xlabel('$\nu_{SM}$','Interpreter','latex');
+title('Capacity Utilization');
+% Price Elasticity of Demand Gap
+% -------------------------------------------------------------------------
+nexttile;
+hold on;
+plot(nuSnuM_mult,squeeze(PE_ag_sam_sw(1,2,:)./PE_ag_sam_sw(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(PE_ag_sam_sw(2,2,:)./PE_ag_sam_sw(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(PE_ag_sam_sw(3,2,:)./PE_ag_sam_sw(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
+hold off;
+axis tight;
+xlabel('$\nu_{SM}$','Interpreter','latex');
+title('Price Elasticity of Demand');
+% Labor Wedge Gap
+% -------------------------------------------------------------------------
+nexttile;
+hold on;
+yline(squeeze(mean(LW_ag_nk_sw(:,2,:),"all")./mean(LW_ag_nk_sw(:,1,:),"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(LW_ag_sam_sw(1,2,:)./LW_ag_sam_sw(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(LW_ag_sam_sw(2,2,:)./LW_ag_sam_sw(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(LW_ag_sam_sw(3,2,:)./LW_ag_sam_sw(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
+hold off;
+axis tight;
+xlabel('$\nu_{SM}$','Interpreter','latex');
+title('Labor Wedge');
+ylim([-1 5])
+% Aggregate Supply
+% -------------------------------------------------------------------------
+nexttile;
+hold on;
+yline(squeeze(mean(AS_ag_nk_sw(:,2,:),"all")./mean(AS_ag_nk_sw(:,1,:),"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(AS_ag_sam_sw(1,2,:)./AS_ag_sam_sw(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(AS_ag_sam_sw(2,2,:)./AS_ag_sam_sw(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(AS_ag_sam_sw(3,2,:)./AS_ag_sam_sw(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
+hold off;
+axis tight;
+xlabel('$\nu_{SM}$','Interpreter','latex');
+title('Phillips Curve');
+% Aggregate Demand
+% -------------------------------------------------------------------------
+nexttile;
+hold on;
+yline(squeeze(mean(AD_ag_nk_sw(:,2,:),"all")./mean(AD_ag_nk_sw(:,1,:),"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(AD_ag_sam_sw(1,2,:)./AD_ag_sam_sw(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(AD_ag_sam_sw(2,2,:)./AD_ag_sam_sw(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(AD_ag_sam_sw(3,2,:)./AD_ag_sam_sw(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
+hold off;
+axis tight;
+xlabel('$\nu_{SM}$','Interpreter','latex');
+title('Euler Equation');
+% Real Wage Growth
+% -------------------------------------------------------------------------
+nexttile;
+hold on;
+yline(squeeze(mean(WG_ag_nk_sw(:,2,:),"all")./mean(WG_ag_nk_sw(:,1,:),"all")),'LineWidth',lwdth,'Color',[0.4660, 0.6740, 0.1880]);
+plot(nuSnuM_mult,squeeze(WG_ag_sam_sw(1,2,:)./WG_ag_sam_sw(1,1,:))','--','Linewidth',lwdth,'Color',[0, 0.4470, 0.7410]);
+plot(nuSnuM_mult,squeeze(WG_ag_sam_sw(2,2,:)./WG_ag_sam_sw(2,1,:))','-.','Linewidth',lwdth,'Color',[0.8500, 0.3250, 0.0980]);
+plot(nuSnuM_mult,squeeze(WG_ag_sam_sw(3,2,:)./WG_ag_sam_sw(3,1,:))','-','Linewidth',lwdth,'Color',[0.9290, 0.6940, 0.1250]);
+hold off;
+axis tight;
+xlabel('$\nu_{SM}$','Interpreter','latex');
+title('Real Wage Growth');
+% Legend
+% -------------------------------------------------------------------------
+leg = legend(string(num2cell([0 round(gamES_low,3) round(gamES_cut,3) round(gamES_high,3)])),'Orientation','horizontal');
+title(leg,'$\gamma_S$','Interpreter','latex');
+leg.Layout.Tile = "south";
+% Save figure
+% -------------------------------------------------------------------------
+set(gcf, 'Units', 'centimeters');
+set(gcf, 'Position', [0 0 21 8]);
+set(gcf, 'PaperUnits', 'centimeters');
+set(gcf, 'PaperSize', [21 8]);
+set(gcf, 'PaperPositionMode', 'manual');
+set(gcf, 'PaperPosition', [0 0 21 8]);
+fontsize(gcf, 7,"points")
+exportgraphics(gcf, 'figures/fig_slopes_robust_sw.png', 'Resolution',600)

@@ -14,7 +14,7 @@
 % ---------------------------------------------------------------------
 function out_nk ...
     = baseline_model(hhHM, gamEH, gamSH, nuH, alpH, muM, nuM, alpM, sig, ...
-                        epss, mp, ue, pc_slope, ghh, hw_select, mp_select)
+                        epss, mp, ue, pc_slope, okun, ghh, hw_select, mp_select)
 
     % Steady State Calculation
     % ---------------------------------------------------------------------
@@ -133,11 +133,11 @@ function out_nk ...
 
     % Applying Okun's Law
     % ---------------------------------------------------------------------
-    out_nk.AS_ag    = out_nk.AS_cm - out_nk.AS_ue./2;
-    out_nk.AD_ag    = out_nk.AD_cm - out_nk.AD_ue./2;
-    out_nk.WG_ag    = out_nk.WG_cm - out_nk.WG_ue./2;
-    out_nk.LW_ag    = out_nk.LW_cm - out_nk.LW_ue./2;
-    out_nk.MC_ag    = out_nk.MC_cm - out_nk.MC_ue./2;
+    out_nk.AS_ag    = out_nk.AS_cm + out_nk.AS_ue./okun;
+    out_nk.AD_ag    = out_nk.AD_cm + out_nk.AD_ue./okun;
+    out_nk.WG_ag    = out_nk.WG_cm + out_nk.WG_ue./okun;
+    out_nk.LW_ag    = out_nk.LW_cm + out_nk.LW_ue./okun;
+    out_nk.MC_ag    = out_nk.MC_cm + out_nk.MC_ue./okun;
 
 
     % ---------------------------------------------------------------------

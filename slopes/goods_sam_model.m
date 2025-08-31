@@ -14,8 +14,8 @@
 % -------------------------------------------------------------------------
 function out_sam ...
     = goods_sam_model(hhHM, cu, x, gamEH, gamSH, nuH, alpH, muM, nuM, alpM, ...
-                        sig, epss, mp, ue, nuS, gamES, gamSS, pc_slope, ghh, ...
-                        hw_select, iHS, mp_select)
+                        sig, epss, mp, ue, nuS, gamES, gamSS, pc_slope, okun, ...
+                        ghh, hw_select, iHS, mp_select)
 
     % Steady State Calculation
     % ---------------------------------------------------------------------
@@ -220,13 +220,13 @@ function out_sam ...
 
     % Applying Okun's Law
     % ---------------------------------------------------------------------
-    out_sam.CU_ag   = out_sam.CU_cm - out_sam.CU_ue./2;
-    out_sam.PE_ag   = out_sam.PE_cm - out_sam.PE_ue./2;
-    out_sam.LW_ag   = out_sam.LW_cm - out_sam.LW_ue./2;
-    out_sam.AS_ag   = out_sam.AS_cm - out_sam.AS_ue./2;
-    out_sam.AD_ag   = out_sam.AD_cm - out_sam.AD_ue./2;
-    out_sam.WG_ag   = out_sam.WG_cm - out_sam.WG_ue./2;
-    out_sam.MC_ag   = out_sam.MC_cm - out_sam.MC_ue./2;
+    out_sam.CU_ag   = out_sam.CU_cm + out_sam.CU_ue./okun;
+    out_sam.PE_ag   = out_sam.PE_cm + out_sam.PE_ue./okun;
+    out_sam.LW_ag   = out_sam.LW_cm + out_sam.LW_ue./okun;
+    out_sam.AS_ag   = out_sam.AS_cm + out_sam.AS_ue./okun;
+    out_sam.AD_ag   = out_sam.AD_cm + out_sam.AD_ue./okun;
+    out_sam.WG_ag   = out_sam.WG_cm + out_sam.WG_ue./okun;
+    out_sam.MC_ag   = out_sam.MC_cm + out_sam.MC_ue./okun;
 
     % ---------------------------------------------------------------------
     % Steady state function full model

@@ -32,11 +32,11 @@ mp_select = 1;
 % LineWidth Option for all graphs
 lwdth=1.5;
 % Plot steady-state experiments
-stst_print = 0;
+stst_print = 1;
 % Plot reduced-form model slopes
 slope_print = 0;
 % Plot time series based on US output and unemployment gap data
-timeseries_print = 1;
+timeseries_print = 0;
 
 %% ------------------------------------------------------------------------
 % .:. Data .:.
@@ -50,6 +50,9 @@ gdp_gap     = 100.* ( GDPC1 - GDPPOT ) ./ GDPPOT;
 
 % Unemployment Gap
 ue_gap      = UNRATE - NROU;
+
+% Okun's Law
+okun        = nanmean(gdp_gap./ue_gap);
 
 % Inflation (CPI)
 cpi_infl    = diff(log(CPIAUCSL)) .* 100;
@@ -107,7 +110,7 @@ gamSH_d = 0.5;      % Taken from Lester (2014): 0.6. Between 0 and 0.8 in the li
 alpH_d  = 0;        % Equal to zero without capital stock, otherwise DRS.
 % Default Parameters: Goods Market SaM Block
 psii_d  = cu;
-nuS_d   = 0.*nuM_d;    % Standard assumption home production literature
+nuS_d   = nuM_d;    % Standard assumption home production literature
 gamES_d = 0.32;     % Taken from Qiu and Rios-Rull (2022): 0.31
 gamSS_d = -0.0001;  % Taken from Qiu and Rios-Rull (2022): -0.27
 
@@ -119,15 +122,18 @@ nuM_loop    = linspace(1.4, 4, 51);
 % Primary Parameter Loops
 nuSnuM_mult = linspace(0.5, 1.5, 51);
 nuSnuM_loop = nuM_d.*nuSnuM_mult;
-gamSS_loop  = [-9999 0];
+gamSS_loop  = [-2.7 0];%[-9999 0];
 % Calculating break-even of 1-gamES*(epss-1)
 options = optimoptions("fsolve","Display","off");
 if mp_select == 1
-    gamES_fct   = @(gamES) 1-gamES*( (mp_d/(mp_d-1)-gamES) / (1-gamES) -1);
+    gamES_fct   = @(gamES, mp) 1-gamES*( (mp/(mp-1)-gamES) / (1-gamES) -1);
+    gamES_solve = @(gamES) gamES_fct(gamES, mp_d); 
 else
-    gamES_fct   = @(gamES) 0.999999-epss_d.*(epss_d-1)./epss_d.*gamES;
+    gamES_fct   = @(gamES, epss) 0.999999-epss.*(epss-1)./epss.*gamES;
+    gamES_solve = @(gamES) gamES_fct(gamES, epss_d); 
 end
-gamES_cut   = fsolve(gamES_fct,0.2, options);
+% Solving for gamES cutoff value
+gamES_cut   = fsolve(gamES_solve,0.2, options);
 gamES_low   = 0.11;
 gamES_high  = 0.32; %(gamES_cut-gamES_low)+gamES_cut;
 gamES_loop  = [gamES_low gamES_cut gamES_high];
@@ -138,6 +144,24 @@ mp_loop     = [1.2 1.4];
 nuMrel_loop = [nuM_d 2*nuM_d];
 
 %% ------------------------------------------------------------------------
+% Calculate gamES cutoff value conditional on epss
+% -------------------------------------------------------------------------
+
+mp_cut_loop     = linspace(1.0001,1.5,20);
+epss_cut_loop   = linspace(4,101,20);
+
+for ii = 1:length(mp_cut_loop)
+    if mp_select == 1
+        gamES_solve = @(gamES) gamES_fct(gamES, mp_cut_loop(ii)); 
+    else
+        gamES_solve = @(gamES) gamES_fct(gamES, epss_cut_loop(ii)); 
+    end
+    %
+    gamES_cut_loop(ii) = fsolve(gamES_solve, 0.2, options);
+end
+
+
+%% ------------------------------------------------------------------------
 % Calculate time series based on US output and unemployment gap data
 % -------------------------------------------------------------------------
 % Call "wedges" function to calculate price adjustment cost parameter based
@@ -145,7 +169,7 @@ nuMrel_loop = [nuM_d 2*nuM_d];
 [out_sam_1, ~] ...
     = wedges(hhHM_base, hhHM_sam, cu, x, gamEH_d, gamSH_d, nuH_d, alpH_d, muM_d, nuM_d, ...
                 alpM_d, sig_d, epss_d, mp_d, ue, nuS_d, gamES_d, gamSS_d, slopeLS, ...
-                ghh, hw_select, iHS, mp_select);
+                okun, ghh, hw_select, iHS, mp_select);
 
 % Calculate capacity utilization gap in US data
 % -------------------------------------------------------------------------
@@ -153,42 +177,25 @@ nuMrel_loop = [nuM_d 2*nuM_d];
 [~, out_nk_1] ...
     = wedges(hhHM_base, hhHM_sam, 1, 1, gamEH_d, gamSH_d, nuH_d, alpH_d, muM_d, nuM_d, ...
                 alpM_d, sig_d, epss_d, mp_d, ue, nuM_d, -0.00001, gamSS_loop(2), slopeLS, ...
-                ghh, hw_select, iHS, mp_select);
+                okun, ghh, hw_select, iHS, mp_select);
 
-% Calculate slopes for gamSS = -5
+% Calculate slopes for gamSS = -2.7
 [out_sam_2, ~] ...
     = wedges(hhHM_base, hhHM_sam, cu, x, gamEH_d, gamSH_d, nuH_d, alpH_d, muM_d, nuM_d, ...
-                alpM_d, sig_d, epss_d, mp_d, ue, nuS_d, gamES_d, -5, slopeLS, ...
-                ghh, hw_select, iHS, mp_select);
-
-% Calculate slopes for gamSS = -20
-[out_sam_3, ~] ...
-    = wedges(hhHM_base, hhHM_sam, cu, x, gamEH_d, gamSH_d, nuH_d, alpH_d, muM_d, nuM_d, ...
-                alpM_d, sig_d, epss_d, mp_d, ue, nuS_d, gamES_d, -20, slopeLS, ...
-                ghh, hw_select, iHS, mp_select);
+                alpM_d, sig_d, epss_d, mp_d, ue, nuS_d, gamES_d, -2.7, slopeLS, ...
+                okun, ghh, hw_select, iHS, mp_select);
 
 % Calculate capacity utilization gap based on US output and unemployment gap data
 cu_gap_1   = out_sam_1.CU_cm .* gdp_gap + out_sam_1.CU_ue .* ue_gap;
 cu_gap_2   = out_sam_2.CU_cm .* gdp_gap + out_sam_2.CU_ue .* ue_gap;
-cu_gap_3   = out_sam_3.CU_cm .* gdp_gap + out_sam_3.CU_ue .* ue_gap;
 
 % Calculate price elasticity of demand gap based on US output and unemployment gap data
 pe_gap_1   = out_sam_1.PE_cm .* gdp_gap + out_sam_1.PE_ue .* ue_gap;
 pe_gap_2   = out_sam_2.PE_cm .* gdp_gap + out_sam_2.PE_ue .* ue_gap;
-pe_gap_3   = out_sam_3.PE_cm .* gdp_gap + out_sam_3.PE_ue .* ue_gap;
-
-% Calculate price elasticity of demand gap growth
-peg_gap_1  = diff(pe_gap_1);
-peg_gap_1  = [0; peg_gap_1];
-peg_gap_2  = diff(pe_gap_2);
-peg_gap_2  = [0; peg_gap_2];
-peg_gap_3  = diff(pe_gap_3);
-peg_gap_3  = [0; peg_gap_3];
 
 % Calculate labor wedge gap based on US output and unemployment gap data
 lw_gap_1    = out_sam_1.LW_cm .* gdp_gap + out_sam_1.LW_ue .* ue_gap;
 lw_gap_2    = out_sam_2.LW_cm .* gdp_gap + out_sam_2.LW_ue .* ue_gap;
-lw_gap_3    = out_sam_3.LW_cm .* gdp_gap + out_sam_3.LW_ue .* ue_gap;
 lw_gap_nk   = out_nk_1.LW_cm .* gdp_gap + out_nk_1.LW_ue .* ue_gap;
 
 % Calculate time series capacity utilization and unemployment gap shares of
@@ -215,16 +222,6 @@ correl = corrcoef([gdp_gap(85:end) cu_gap_1(85:end) cu_gap_2(85:end) ...
                     pe_gap_1(85:end) pe_gap_2(85:end) lw_gap_nk(85:end) ...
                     lw_gap_1(85:end) lw_gap_2(85:end)]);
 
-% Annualization of search price and inflation data
-infl_yoy = zeros(length(defl_infl), 1);
-peg_yoy  = zeros(length(defl_infl), 1);
-for ii = 4:(length(defl_infl))
-    infl_yoy(ii) = sum(defl_infl(ii-3:ii));
-    peg_yoy_1(ii)  = sum(peg_gap_1(ii-3:ii));
-    peg_yoy_2(ii)  = sum(peg_gap_2(ii-3:ii));
-    peg_yoy_3(ii)  = sum(peg_gap_3(ii-3:ii));
-end
-
 
 %% ------------------------------------------------------------------------
 % Steady-State Experiment: epss and gamES nexus for stst price markups
@@ -248,14 +245,14 @@ for ii = 1:length(gamES_loop_stst)
             [out_sam, out_nk, ~] ...
                 = wedges(hhHM_base, hhHM_sam, cu, x, gamEH_d, gamSH_d, nuH_d, alpH_d, ...
                             muM_d, nuM_d, alpM_d, sig_d, epss_d, mp_loop_stst(tt), ue, ...
-                            nuS_d, gamES_loop_stst(ii), gamSS_d, slopeLS, ghh, ...
+                            nuS_d, gamES_loop_stst(ii), gamSS_d, slopeLS, okun, ghh, ...
                             hw_select, iHS, mp_select);
         else
             % Rel. hours elasticity nuS vs nuM AND matching elasticity
             [out_sam, out_nk, ~] ...
                 = wedges(hhHM_base, hhHM_sam, cu, x, gamEH_d, gamSH_d, nuH_d, alpH_d, ...
                             muM_d, nuM_d, alpM_d, sig_d, epss_loop_stst(tt), mp_d, ue, ...
-                            nuS_d, gamES_loop_stst(ii), gamSS_d, slopeLS, ghh, ...
+                            nuS_d, gamES_loop_stst(ii), gamSS_d, slopeLS, okun, ghh, ...
                             hw_select, iHS, mp_select);
         end
         
@@ -286,7 +283,7 @@ for ii = 1:length(gamES_loop_stst)
         [out_sam, out_nk, ~] ...
             = wedges(hhHM_base, hhHM_sam, cu_loop_stst(tt), x, gamEH_d, gamSH_d, nuH_d, ...
                         alpH_d, muM_d, nuM_d, alpM_d, sig_d, epss_d, mp_d, ue, nuS_d, ...
-                        gamES_loop_stst(ii), gamSS_d, slopeLS, ghh, hw_select, iHS, mp_select);
+                        gamES_loop_stst(ii), gamSS_d, slopeLS, okun, ghh, hw_select, iHS, mp_select);
 
         % Save FOR-loop output
         stst_ps_psi_sam(ii, tt) = out_sam.stst_ps;
@@ -314,7 +311,7 @@ for ii = 1:length(nuM_loop)
         [~, ~, wedge] ...
             = wedges(hhHM_base, hhHM_sam, cu, x, gamEH_d, gamSH_d, nuH_d, alpH_d, muM_d, ...
                         nuM_loop(ii), alpM_d, sig_d, epss_d, mp_d, ue, nuS_loop(tt), ...
-                        gamES_d, gamSS_d, slopeLS, ghh, hw_select, iHS, mp_select);
+                        gamES_d, gamSS_d, slopeLS, okun, ghh, hw_select, iHS, mp_select);
         % Save output
         AS_wedge_3d(ii,tt) = wedge.AS;
         AD_wedge_3d(ii,tt) = wedge.AD;
@@ -333,7 +330,7 @@ for ii = 1:length(gamES_loop)
                 = wedges(hhHM_base, hhHM_sam, cu, x, gamEH_d, gamSH_d, nuH_d, ...
                             alpH_d, muM_d, nuM_d, alpM_d, sig_d, epss_d, mp_d, ...
                             ue, nuSnuM_loop(tt), gamES_loop(ii), gamSS_loop(hh), ...
-                            slopeLS, ghh, hw_select, iHS, mp_select);
+                            slopeLS, okun, ghh, hw_select, iHS, mp_select);
             % Save output
             % -------------------------------------------------------------
             % NK-SaM Model: Separate output and unemployment gaps
@@ -388,7 +385,7 @@ for ii = 1:length(gamES_loop)
             [out_sam, out_nk, ~] ...
                 = wedges(hhHM_base, hhHM_sam, cu, x, gamEH_d, gamSH_d, nuH_d, alpH_d, muM_d, ...
                             nuM_d, alpM_d, sig_d, epss_d, mp_d, ue, nuSnuM_loop(tt), ...
-                            gamES_loop(ii), gamSS_d, slopeLS, ghh, hw_loop(hh), iHS, mp_select);
+                            gamES_loop(ii), gamSS_d, slopeLS, okun, ghh, hw_loop(hh), iHS, mp_select);
             % Save output
             CU_ag_sam_hw(ii,hh,tt)  = out_sam.CU_ag;
             PE_ag_sam_hw(ii,hh,tt)  = out_sam.PE_ag;
@@ -414,7 +411,7 @@ for ii = 1:length(gamES_loop)
             [out_sam, out_nk, ~] ...
                 = wedges(hhHM_base, hhHM_sam, cu, x, gamEH_d, gamSH_d, nuH_d, alpH_d, muM_d, ...
                             nuM_d, alpM_d, sig_d, epss_d, mp_d, ue, nuSnuM_loop(tt), ...
-                            gamES_loop(ii), gamSS_d, slopeLS, ghh_loop(hh), hw_select, iHS, mp_select);
+                            gamES_loop(ii), gamSS_d, slopeLS, okun, ghh_loop(hh), hw_select, iHS, mp_select);
             % Save output
             CU_ag_sam_ghh(ii,hh,tt) = out_sam.CU_ag;
             PE_ag_sam_ghh(ii,hh,tt) = out_sam.PE_ag;
@@ -427,6 +424,41 @@ for ii = 1:length(gamES_loop)
             WG_ag_sam_ghh(ii,hh,tt) = out_sam.WG_ag;
             WG_ag_nk_ghh(ii,hh,tt)  = out_nk.WG_ag;
         end
+    end
+end
+
+%% ------------------------------------------------------------------------
+% Slopes of the Reduced-Form Model: Sticky Wages
+% -------------------------------------------------------------------------
+for ii = 1:length(gamES_loop)
+    for tt = 1:length(nuSnuM_loop)
+        % Rel. hours elasticity nuS vs nuM AND matching elasticity
+        [out_sam, out_nk, ~] ...
+            = wedges(hhHM_base, hhHM_sam, cu, x, gamEH_d, gamSH_d, nuH_d, alpH_d, muM_d, ...
+                        nuM_d, alpM_d, sig_d, epss_d, mp_d, ue, nuSnuM_loop(tt), ...
+                        gamES_loop(ii), gamSS_d, slopeLS, okun, ghh, hw_select, iHS, mp_select);
+        % Save output
+        CU_ag_sam_sw(ii,1,tt) = out_sam.CU_cm;
+        PE_ag_sam_sw(ii,1,tt) = out_sam.PE_cm;
+        LW_ag_sam_sw(ii,1,tt) = out_sam.LW_cm;
+        LW_ag_nk_sw(ii,1,tt)  = out_nk.LW_cm;
+        AS_ag_sam_sw(ii,1,tt) = out_sam.AS_cm;
+        AS_ag_nk_sw(ii,1,tt)  = out_nk.AS_cm;
+        AD_ag_sam_sw(ii,1,tt) = out_sam.AD_cm;
+        AD_ag_nk_sw(ii,1,tt)  = out_nk.AD_cm;
+        WG_ag_sam_sw(ii,1,tt) = out_sam.WG_cm;
+        WG_ag_nk_sw(ii,1,tt)  = out_nk.WG_cm;
+        % Save output
+        CU_ag_sam_sw(ii,2,tt) = out_sam.CU_ag;
+        PE_ag_sam_sw(ii,2,tt) = out_sam.PE_ag;
+        LW_ag_sam_sw(ii,2,tt) = out_sam.LW_ag;
+        LW_ag_nk_sw(ii,2,tt)  = out_nk.LW_ag;
+        AS_ag_sam_sw(ii,2,tt) = out_sam.AS_ag;
+        AS_ag_nk_sw(ii,2,tt)  = out_nk.AS_ag;
+        AD_ag_sam_sw(ii,2,tt) = out_sam.AD_ag;
+        AD_ag_nk_sw(ii,2,tt)  = out_nk.AD_ag;
+        WG_ag_sam_sw(ii,2,tt) = out_sam.WG_ag;
+        WG_ag_nk_sw(ii,2,tt)  = out_nk.WG_ag;
     end
 end
 
@@ -456,16 +488,16 @@ end
 function [out_sam, out_nk, wedge] ...
     = wedges(hhHM_base, hhHM_sam, cu, x, gamEH, gamSH, nuH, alpH, muM, nuM, ...
                 alpM, sig, epss, mp, ue, nuS, gamES, gamSS, pc_slope, ...
-                ghh, hw_select, iHS, mp_select)
+                okun, ghh, hw_select, iHS, mp_select)
 
     % Call baseline NK model
     out_nk = baseline_model(hhHM_base, gamEH, gamSH, nuH, alpH, muM, nuM, alpM, ...
-                              sig, epss, mp, ue, pc_slope, ghh, hw_select, mp_select);
+                              sig, epss, mp, ue, pc_slope, okun, ghh, hw_select, mp_select);
     
     % Call goods market SaM model
     out_sam = goods_sam_model(hhHM_sam, cu, x, gamEH, gamSH, nuH, alpH, muM, nuM, ...
                               alpM, sig, epss, mp, ue, nuS, gamES, gamSS, pc_slope, ...
-                              ghh, hw_select, iHS, mp_select);
+                              okun, ghh, hw_select, iHS, mp_select);
     
     % Wedges between NK-SaM and Baseline NK Model
     wedge.AS = real(out_sam.AS_ag / out_nk.AS_ag);
